@@ -10,3 +10,5 @@ const errorHandler = (error, req, res, next) => {
         next();
     }
 }
+
+export default errorHandler;
