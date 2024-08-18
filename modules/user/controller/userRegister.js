@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 import jsonwebtoken from "jsonwebtoken";
+import emailManager from "../../../managers/emailManager.js";
 
 const userRegister = async (req, res) => {
     const usersModel = mongoose.model("users");
@@ -38,6 +39,13 @@ const userRegister = async (req, res) => {
             _id: createdUser._id,
             name: createdUser.name
         }, process.env.JWT_KEY
+    );
+
+    await emailManager(
+        createdUser.email,
+        "Welcome to expense tracker PRO. We hope you can manage your expenses easily from our platform!",
+        "<h1>Welcome to expense tracker PRO.</h1> <br/><br/> We hope you can manage your expenses easily from our platform!",
+        "Welcome to Expense Tracker PRO!"
     );
 
 
