@@ -10,7 +10,7 @@ const app = express();
 
 // Models initialization
 import "./models/User.js"
-
+import "./models/Transaction.js"
 //Env configure
 dotenv.config();
 
