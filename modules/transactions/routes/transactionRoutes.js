@@ -2,6 +2,7 @@ import express from "express";
 import auth from "../../../middleware/auth.js";
 import addIncome from "../controller/addIncome.js";
 import addExpense from "../controller/addExpense.js";
+import getTransactions from "../controller/getTransactions.js";
 
 
 const transactionRoutes = express.Router();
@@ -13,6 +14,6 @@ transactionRoutes.post("/addIncome", addIncome);
 
 transactionRoutes.post("/addExpense", addExpense);
 
-
+transactionRoutes.get("/",getTransactions);
 
 export default transactionRoutes;
