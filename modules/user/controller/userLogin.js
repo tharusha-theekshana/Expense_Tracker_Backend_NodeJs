@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 import jsonwebtoken from "jsonwebtoken";
+import jwtManager from "../../../managers/jwtManager.js";
 const userLogin = async (req, res) => {
     const usersModel = mongoose.model("users");
 
@@ -19,11 +20,7 @@ const userLogin = async (req, res) => {
 
     if (!comparePassword) throw "Email and password do not match!";
 
-    const accessToken = await jsonwebtoken.sign({
-        _id : getUser._id,
-        name : getUser.name
-    },process.env.JWT_KEY
-    );
+    const accessToken = jwtManager(getUser);
 
     res.status(200).json({
         status: "success",

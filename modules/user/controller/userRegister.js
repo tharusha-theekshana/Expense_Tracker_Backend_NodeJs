@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 import jsonwebtoken from "jsonwebtoken";
 import emailManager from "../../../managers/emailManager.js";
+import jwtManager from "../../../managers/jwtManager.js";
 
 const userRegister = async (req, res) => {
     const usersModel = mongoose.model("users");
@@ -35,11 +36,7 @@ const userRegister = async (req, res) => {
     });
 
 
-    const accessToken = await jsonwebtoken.sign({
-            _id: createdUser._id,
-            name: createdUser.name
-        }, process.env.JWT_KEY
-    );
+    const accessToken = jwtManager(createdUser);
 
     await emailManager(
         createdUser.email,
