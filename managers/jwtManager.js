@@ -6,7 +6,7 @@ const jwtManager = (user) => {
             _id: user._id,
             name: user.name,
         },
-        process.env.jwt_salt
+        process.env.JWT_KEY
     );
 
     return accessToken;
