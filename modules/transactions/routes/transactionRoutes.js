@@ -4,6 +4,7 @@ import addIncome from "../controller/addIncome.js";
 import addExpense from "../controller/addExpense.js";
 import getTransactions from "../controller/getTransactions.js";
 import deleteTransaction from "../controller/deleteTransaction.js";
+import editTransaction from "../controller/editTransaction.js";
 
 
 const transactionRoutes = express.Router();
@@ -18,5 +19,7 @@ transactionRoutes.post("/addExpense", addExpense);
 transactionRoutes.get("/",getTransactions);
 
 transactionRoutes.delete("/:transaction_id", deleteTransaction);
+
+transactionRoutes.patch("/", editTransaction);
 
 export default transactionRoutes;
